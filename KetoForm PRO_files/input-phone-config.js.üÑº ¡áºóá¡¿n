@@ -1,0 +1,119 @@
+input = document.getElementsByName("masked-phone"), i = input.length;
+errorMsg = document.getElementsByClassName("error-msg"),
+  validMsg = document.getElementsByClassName("valid-msg"),
+  countryInput = document.getElementsByName("country");
+
+var errorMap = ["Некорректный номер телефона", "Invalid country code", "Слишком короткий номер телефона", "Слишком длинный номер телефона", "Некорректный номер телефона"];
+
+const omniValues = () => {
+  let packPrices = document.getElementsByName('packPrice'),
+    specialPrices = document.getElementsByName('specialPrice'),
+    countryInput = document.getElementsByName("country");
+
+
+  setTimeout(() => {
+    for (let v = 0; v < packPrices.length; v++) {
+      let currentCountry = countryInput[v].value;
+      console.log(currentCountry);
+      let omniPackPrice = eval(`countryList.${currentCountry}.packPrice`),
+        omniSpecialPrice = eval(`countryList.${currentCountry}.specialPrice`);
+
+      packPrices[v].value = omniPackPrice;
+      specialPrices[v].value = omniSpecialPrice;
+    }
+  }, 199);
+
+
+}
+
+while (i--) {
+  var inputList = input[i],
+    errorMsgItem = errorMsg[i],
+    validMsgItem = validMsg[i],
+    countryInputItem = countryInput[i],
+    packPrices = document.getElementsByName('packPrice'),
+    specialPrices = document.getElementsByName('specialPrice');
+
+  var iti = window.intlTelInput(inputList, {
+    utilsScript: "intl-tel-omni/js/utils.js",
+    separateDialCode: true,
+    onlyCountries: ["at", "bg", "hu", "de", "gr", "es", "it", "cy", "lv", "lt", "pl", "pt", "ro", "sk", "si", "fr", "cz", "ee", "hr"],
+    initialCountry: "auto",
+    geoIpLookup: async function (success, failure) {
+      var respIp = await fetch("https://ipinfo.io/json");
+      var respIpJson = await respIp.json();
+      var countryCode = ((respIpJson && respIpJson.country) ? respIpJson.country : onlyCountries[0]).toLowerCase();
+      success(countryCode);
+      countryInputItem.value = countryCode;
+      omniValues();
+    },
+  });
+
+
+  async function countryIso2Delay() {
+    var countryIso2 = await document.getElementsByClassName('iti__country');
+
+    var getCountryIso2 = () => {
+      var countryData = iti.getSelectedCountryData().iso2;
+      countryInputItem.value = countryData;
+    }
+
+    var getSelectedCountryIso2 = () => {
+      for (i = 0; i < countryIso2.length; i++) {
+        countryIso2[i].addEventListener('click', () => {
+          setTimeout(() => {
+            getCountryIso2();
+            omniValues();
+          }, 99);
+        })
+      }
+    };
+
+    getSelectedCountryIso2();
+  };
+
+  countryIso2Delay();
+
+  var reset = function () {
+    inputList.classList.remove("error");
+    errorMsgItem.innerHTML = "";
+    errorMsgItem.classList.add("hide");
+    validMsgItem.classList.add("hide");
+  };
+
+  inputList.addEventListener('input', function () {
+    reset();
+    if (inputList.value.trim()) {
+      if (iti.isValidNumber()) {
+        validMsgItem.classList.remove("hide");
+      } else {
+        inputList.classList.add("error");
+        let errorCode = iti.getValidationError();
+        console.log(errorCode);
+        errorMsgItem.innerHTML = errorMap[errorCode];
+        errorMsgItem.classList.remove("hide");
+        if(errorCode == -99) {
+          errorMsgItem.innerHTML = 'Слишком короткий номер телефона';
+        };
+      }
+    };
+  })
+}
+
+var formPhoneInput = document.getElementsByName('masked-phone'), phoneInputLength = formPhoneInput.length;
+
+while (phoneInputLength--) {
+  formPhoneInput[phoneInputLength].addEventListener('keyup', () => {
+    var countryPhoneCode = document.getElementsByClassName('iti__selected-dial-code'), codeLength = countryPhoneCode.length;
+    var finalValue = document.getElementsByName('phone');
+    while (codeLength--) {
+      finalValue[codeLength].value = (countryPhoneCode[codeLength].innerHTML + formPhoneInput[codeLength].value).replace(/[^0-9]/g, '');
+    }
+
+  });
+}
+
+
+
+
+

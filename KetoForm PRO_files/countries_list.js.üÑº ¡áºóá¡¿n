@@ -1,0 +1,139 @@
+(function() {
+    'use strict';
+
+    window.countryList = {
+        bg: {
+            name: 'Болгария',
+            code: 'bg',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '316'
+        },
+        sk: {
+            name: 'Словакия',
+            code: 'sk',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        si: {
+            name: 'Словения',
+            code: 'si',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        de: {
+            name: 'Германия',
+            code: 'de',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '276'
+        },
+        es: {
+            name: 'Испания',
+            code: 'es',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        it: {
+            name: 'Италия',
+            code: 'it',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        lv: {
+            name: 'Латвия',
+            code: 'lv',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        lt: {
+            name: 'Литва',
+            code: 'lt',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        pl: {
+            name: 'Польша',
+            code: 'pl',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '996'
+        },
+        ro: {
+            name: 'Румыния',
+            code: 'ro',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '996'
+        },
+        cz: {
+            name: 'Чехия',
+            code: 'cz',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '6236'
+        },
+        ee: {
+            name: 'Эстония',
+            code: 'ee',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        hu: {
+            name: 'Венгрия',
+            code: 'hu',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '77996'
+        },
+        at: {
+            name: 'Австрия',
+            code: 'at',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        gr: {
+            name: 'Греция',
+            code: 'gr',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        cy: {
+            name: 'Кипр',
+            code: 'cy',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        pt: {
+            name: 'Португалия',
+            code: 'pt',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        fr: {
+            name: 'Франция',
+            code: 'fr',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+        hr: {
+            name: 'Хорватия',
+            code: 'hr',
+            price: 'бесплатно',
+            specialPrice: '0',
+            packPrice: '236'
+        },
+    };
+})();
